@@ -9,11 +9,13 @@ ext {
     libraryName = 'chatbar'
     artifact = 'chatbar' // I'm calling it the same as my library name
 
-    libraryDescription = 'An example library to make your programming life easy'
+    libraryDescription = 'An library to make your programming life easy'
 
     siteUrl = 'https://cenkgun.com'
+    gitUrl = 'https://github.com/CnkGn/ChatBar.git'
 
-    libraryVersion = '1.0.0'
+
+    libraryVersion = '1.0.2'
 
     developerId = 'cnkgn'
     // Maven plugin uses this. I don't know if it needs to be anything special.
@@ -56,7 +58,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = publishedGroupId // Maven Group ID for the artifact
@@ -90,6 +91,8 @@ install {
                     }
                 }
                 scm {
+                    connection gitUrl
+                    developerConnection gitUrl
                     url siteUrl
 
                 }
@@ -148,6 +151,7 @@ bintray {
         name = bintrayName
         desc = libraryDescription
         websiteUrl = siteUrl
+        vcsUrl = gitUrl
         licenses = allLicenses
         publish = true
         publicDownloadNumbers = true
