@@ -29,9 +29,17 @@ Sample use
 Add dependency to your build.gradle
 
 ```
-	dependencies {
-    	compile 'com.cenkgun:chatbar:1.0.2'
-	}
+repositories {
+        jcenter()
+        maven {
+            url "http://dl.bintray.com/cnkgn/maven"
+        }
+
+    }
+    
+dependencies {
+  compile 'com.cenkgun:chatbar:1.0.2'
+}
     
 ```
 
