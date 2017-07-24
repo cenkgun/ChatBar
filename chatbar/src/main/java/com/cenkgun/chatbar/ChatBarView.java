@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.EditText;
@@ -21,7 +22,7 @@ public class ChatBarView extends FrameLayout {
 
     private CharSequence[] mTint;
     private int mColor;
-
+    final Handler handler = new Handler();
 
     public ChatBarView(Context context) {
         super(context);
@@ -88,6 +89,18 @@ public class ChatBarView extends FrameLayout {
 
     public void setMessageBoxHint(String text) {
         messageEditText.setHint(text);
+    }
+    
+    public void setClearMessage(Boolean bol){
+        if (true){
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    // acciones que se ejecutan tras los milisegundos
+                    messageEditText.getText().clear();
+
+                }
+            },10);
+        }
     }
 
     public String getMessageText() {
