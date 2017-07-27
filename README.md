@@ -12,7 +12,7 @@ You can use it step by step
 
 Sample use
 
-```
+``` java
     ChatBarView chatBarView;
 
     @Override
@@ -21,6 +21,15 @@ Sample use
         setContentView(R.layout.activity_main);
 
         chatBarView = (ChatBarView) findViewById(R.id.chatbar);
+        
+        // To set a hint to the text box...
+        chatBarView.setMessageBoxHint("Type your message...");
+        
+        // To set a listener to the "send" button...
+        chatBarView.setSendClickListener(...);
+        
+        // To get the message typed by the user...
+        chatBarView.getMessageText();
     }
 ```
 
@@ -38,7 +47,7 @@ repositories {
     }
     
 dependencies {
-  compile 'com.cenkgun:chatbar:1.0.2'
+  compile 'com.cenkgun:chatbar:1.0.3'
 }
     
 ```
