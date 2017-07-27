@@ -15,7 +15,7 @@ ext {
     gitUrl = 'https://github.com/CnkGn/ChatBar.git'
 
 
-    libraryVersion = '1.0.2'
+    libraryVersion = '1.0.3'
 
     developerId = 'cnkgn'
     // Maven plugin uses this. I don't know if it needs to be anything special.
