@@ -47,7 +47,7 @@ repositories {
     }
     
 dependencies {
-  compile 'com.cenkgun:chatbar:1.0.2'
+  compile 'com.cenkgun:chatbar:1.0.3'
 }
     
 ```
