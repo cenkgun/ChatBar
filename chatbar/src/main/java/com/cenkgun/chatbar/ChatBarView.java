@@ -58,10 +58,10 @@ public class ChatBarView extends FrameLayout {
                 .getBoolean(R.styleable.chatbar_cb_isSoftInputHidden, false);
 
         sendButtonColor = typedArray
-                .getColor(R.styleable.chatbar_cb_sendButtonColor, Color.BLUE);
+                .getColor(R.styleable.chatbar_cb_sendButtonColor, Color.WHITE);
 
         sendButtonBackgroundColor = typedArray
-                .getColor(R.styleable.chatbar_cb_sendButtonBackgroundColor, Color.WHITE);
+                .getColor(R.styleable.chatbar_cb_sendButtonBackgroundColor, Color.BLUE);
 
         typedArray.recycle();
 

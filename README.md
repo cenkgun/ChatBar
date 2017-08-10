@@ -6,11 +6,15 @@ A sweet message box designed for Android developers.
 
 ## Getting Started
 
+
+----------
+
+
 ### Installing
 
 You can use it step by step
 
-Sample use
+**Sample use**
 
 ``` java
     ChatBarView chatBarView;
@@ -21,10 +25,7 @@ Sample use
         setContentView(R.layout.activity_main);
 
         chatBarView = (ChatBarView) findViewById(R.id.chatbar);
-        
-        // To set a hint to the text box...
-        chatBarView.setMessageBoxHint("Type your message...");
-        
+                
         // To set a listener to the "send" button...
         chatBarView.setSendClickListener(...);
         
@@ -32,8 +33,37 @@ Sample use
         chatBarView.getMessageText();
     }
 ```
+**Layout**
 
-### Set Up
+        <com.cenkgun.chatbar.ChatBarView
+	        android:id="@+id/chatbar"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        app:cb_isTextCleanerEnabled="true"
+	        app:cb_isSoftInputHidden="true"
+	        app:cb_messageBoxHint="sample text"
+	        app:cb_sendButtonColor="#ff5599"
+	        app:cb_sendButtonBackgroundColor="#000000"/>
+
+
+----------
+
+
+**Attributes**
+
+|        Attribute Name        | Type    | Default Value |
+|:----------------------------:|---------|---------------|
+| cb_isTextCleanerEnabled      | boolean | true          |
+| cb_isSoftInputHidden         | boolean | false         |
+| cb_messageBoxHint            | String  |               |
+| cb_sendButtonColor           | Color   | Color.WHITE   |
+| cb_sendButtonBackgroundColor | Color   | Color.BLUE    |
+
+
+----------
+
+
+### Dependency
 
 Add dependency to your build.gradle
 
@@ -47,7 +77,7 @@ repositories {
     }
     
 dependencies {
-  compile 'com.cenkgun:chatbar:1.0.3'
+  compile 'com.cenkgun:chatbar:1.0.4'
 }
     
 ```
