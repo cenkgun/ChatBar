@@ -1,11 +1,14 @@
 package com.cenkgun.chatbar;
 
-import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -18,57 +21,50 @@ public class ChatBarView extends FrameLayout {
 
     private EditText messageEditText;
     private ImageButton sendButton;
-
-    private CharSequence[] mTint;
-    private int mColor;
-
+    private Context context;
+    private boolean isAutoClearEnabled;
+    private boolean isSoftInputHidden;
+    private String messageBoxHint = null;
+    private int sendButtonColor;
+    private int sendButtonBackgroundColor;
 
     public ChatBarView(Context context) {
-        super(context);
-        initializeViews(context);
+        this(context, null);
     }
 
     public ChatBarView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-
-        TypedArray typedArray;
-        typedArray = context
-                .obtainStyledAttributes(attrs, R.styleable.chatbar);
-        mTint = typedArray
-                .getTextArray(R.styleable.chatbar_messageBoxTint);
-
-        mColor = typedArray
-                .getColor(R.styleable.chatbar_messageBoxTint, 0);
-
-        typedArray.recycle();
-
-        initializeViews(context);
+        this(context, attrs, 0);
     }
 
     public ChatBarView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
+        initializeViews(context, attrs);
+    }
+
+    private void initializeViews(Context context, AttributeSet attrs) {
 
         TypedArray typedArray;
         typedArray = context
                 .obtainStyledAttributes(attrs, R.styleable.chatbar);
-        mTint = typedArray
-                .getTextArray(R.styleable.chatbar_messageBoxTint);
 
-        mColor = typedArray
-                .getColor(R.styleable.chatbar_messageBoxTint, 0);
+        messageBoxHint = typedArray
+                .getString(R.styleable.chatbar_cb_messageBoxHint);
+
+        isAutoClearEnabled = typedArray
+                .getBoolean(R.styleable.chatbar_cb_isTextCleanerEnabled, true);
+
+        isSoftInputHidden = typedArray
+                .getBoolean(R.styleable.chatbar_cb_isSoftInputHidden, false);
+
+        sendButtonColor = typedArray
+                .getColor(R.styleable.chatbar_cb_sendButtonColor, Color.BLUE);
+
+        sendButtonBackgroundColor = typedArray
+                .getColor(R.styleable.chatbar_cb_sendButtonBackgroundColor, Color.WHITE);
 
         typedArray.recycle();
 
-        initializeViews(context);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ChatBarView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        initializeViews(context);
-    }
-
-    private void initializeViews(Context context) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.chatbar_layout, this);
@@ -77,17 +73,28 @@ public class ChatBarView extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
-        messageEditText = (EditText) this.findViewById(R.id.messageEditText);
-        sendButton = (ImageButton) this.findViewById(R.id.sendButton);
+        messageEditText = this.findViewById(R.id.messageEditText);
+        sendButton = this.findViewById(R.id.sendButton);
+        sendButton.setColorFilter(sendButtonBackgroundColor);
+        sendButton.getBackground().setColorFilter(sendButtonColor, PorterDuff.Mode.SRC_ATOP);
+        if (messageBoxHint != null) messageEditText.setHint(messageBoxHint);
     }
 
-    public void setSendClickListener(OnClickListener listener) {
-        sendButton.setOnClickListener(listener);
-    }
+    public void setSendClickListener(final OnClickListener listener) {
+        sendButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClick(view);
 
-    public void setMessageBoxHint(String text) {
-        messageEditText.setHint(text);
+                if (isAutoClearEnabled) {
+                    messageEditText.setText("");
+                }
+
+                if (isSoftInputHidden) {
+                    hideSoftInput();
+                }
+            }
+        });
     }
 
     public String getMessageText() {
@@ -96,5 +103,13 @@ public class ChatBarView extends FrameLayout {
         } else {
             return "";
         }
+    }
+
+    public void hideSoftInput() {
+        View view = ((Activity) context).getCurrentFocus();
+        if (view == null) view = new View(((Activity) context));
+        InputMethodManager imm = (InputMethodManager) ((Activity) context).getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (imm == null) return;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

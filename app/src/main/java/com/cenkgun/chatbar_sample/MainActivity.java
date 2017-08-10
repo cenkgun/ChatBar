@@ -2,6 +2,7 @@ package com.cenkgun.chatbar_sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,13 +20,11 @@ public class MainActivity extends AppCompatActivity {
 
         chatBarView = (ChatBarView) findViewById(R.id.chatbar);
 
-        chatBarView.setMessageBoxHint("custom text");
-
         chatBarView.setSendClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO what you want..
-                Toast.makeText(MainActivity.this, "Clicked..", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, chatBarView.getMessageText(), Toast.LENGTH_SHORT).show();
             }
         });
 

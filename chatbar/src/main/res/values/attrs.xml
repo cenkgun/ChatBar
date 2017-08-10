@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="chatbar">
-        <attr name="messageBoxTint" format="string" />
-        <attr name="sendButtonColor" format="color" />
+        <attr name="cb_messageBoxHint" format="string" />
+        <attr name="cb_sendButtonColor" format="color" />
+        <attr name="cb_sendButtonBackgroundColor" format="color" />
+        <attr name="cb_isTextCleanerEnabled" format="boolean" />
+        <attr name="cb_isSoftInputHidden" format="boolean" />
     </declare-styleable>
 </resources>
