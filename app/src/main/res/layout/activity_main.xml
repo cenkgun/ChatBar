@@ -21,7 +21,7 @@
         android:layout_alignParentStart="true"
         app:cb_isTextCleanerEnabled="true"
         app:cb_isSoftInputHidden="true"
-        app:cb_messageBoxHint="Uğur Piçi"
+        app:cb_messageBoxHint="sample text"
         app:cb_sendButtonColor="#ff5599"
         app:cb_sendButtonBackgroundColor="#000000"/>
 </RelativeLayout>
