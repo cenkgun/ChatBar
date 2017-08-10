@@ -64,24 +64,20 @@ You can use it step by step
 
 
 ### Dependency
+Add it in your root build.gradle at the end of repositories:
 
-Add dependency to your build.gradle
+    allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+Add the dependency
 
-```
-repositories {
-        jcenter()
-        maven {
-            url "http://dl.bintray.com/cnkgn/maven"
-        }
-
-    }
-    
-dependencies {
-  compile 'com.cenkgun:chatbar:1.0.4'
-}
-    
-```
-
+    dependencies {
+    	    compile 'com.github.CenkGun:ChatBar:1.0.4'
+    	}
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
