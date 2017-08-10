@@ -1,32 +1,6 @@
 apply plugin: 'com.android.library'
-
-ext {
-    bintrayRepo = 'maven'  // this is the same as whatever you called your repository in Bintray
-    bintrayName = 'ChatBar'
-    // your bintray package name. I am calling it the same as my library name.
-
-    publishedGroupId = 'com.cenkgun'
-    libraryName = 'chatbar'
-    artifact = 'chatbar' // I'm calling it the same as my library name
-
-    libraryDescription = 'An library to make your programming life easy'
-
-    siteUrl = 'https://cenkgun.com'
-    gitUrl = 'https://github.com/CnkGn/ChatBar.git'
-
-
-    libraryVersion = '1.0.4'
-
-    developerId = 'cnkgn'
-    // Maven plugin uses this. I don't know if it needs to be anything special.
-    developerName = 'Cenk Gun'
-    developerEmail = 'cenk.gn@gmail.com'
-
-    licenseName = 'The MIT License (MIT)'
-    licenseUrl = 'https://opensource.org/licenses/MIT'
-    allLicenses = ["MIT"]
-}
-
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.CenkGun'
 
 android {
     compileSdkVersion 26
@@ -36,7 +10,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.4"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -58,110 +32,3 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-apply plugin: 'com.github.dcendents.android-maven'
-
-group = publishedGroupId // Maven Group ID for the artifact
-
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                groupId publishedGroupId
-                artifactId artifact
-
-                // Add your description here
-                name libraryName
-                description libraryDescription
-                url siteUrl
-
-                // Set your license
-                licenses {
-                    license {
-                        name licenseName
-                        url licenseUrl
-                    }
-                }
-                developers {
-                    developer {
-                        id developerId
-                        name developerName
-                        email developerEmail
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-
-                }
-            }
-        }
-    }
-}
-
-// Bintray section
-// As long as you add bintray.user and bintray.apikey to the local.properties
-// file, you shouldn't have to change anything here. The reason you
-// don't just write them here is so that they won't be publicly visible
-// in GitHub or wherever your source control is.
-
-apply plugin: 'com.jfrog.bintray'
-
-version = libraryVersion
-
-if (project.hasProperty("android")) { // Android libraries
-    task sourcesJar(type: Jar) {
-        classifier = 'sources'
-        from android.sourceSets.main.java.srcDirs
-    }
-
-    task javadoc(type: Javadoc) {
-        source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    }
-} else { // Java libraries
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = 'sources'
-        from sourceSets.main.allSource
-    }
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
-
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-
-    configurations = ['archives']
-    pkg {
-        repo = bintrayRepo
-        name = bintrayName
-        desc = libraryDescription
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = allLicenses
-        publish = true
-        publicDownloadNumbers = true
-        version {
-            desc = libraryDescription
-            gpg {
-                // optional GPG encryption. Default is false.
-                sign = false
-                //passphrase = properties.getProperty("bintray.gpg.password")
-            }
-        }
-    }
-}
