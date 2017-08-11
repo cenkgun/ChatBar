@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        chatBarView.setMicErrorMessage("BABA AKÜ YOK");
-
         text = chatBarView.getMessageText();
     }
 

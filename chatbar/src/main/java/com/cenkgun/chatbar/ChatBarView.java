@@ -143,10 +143,6 @@ public class ChatBarView extends FrameLayout {
         });
     }
 
-    public void setMicErrorMessage(String message) {
-        micClickWarningMessage = message;
-    }
-
     public String getMessageText() {
         if (messageEditText.getText() != null) {
             return messageEditText.getText().toString();
