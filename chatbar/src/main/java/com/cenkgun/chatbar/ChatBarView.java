@@ -94,7 +94,7 @@ public class ChatBarView extends FrameLayout {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (i2 != 0) {
+                if (charSequence.length() != 0) {
                     sendButton.setImageResource(R.mipmap.input_send);
                 } else {
                     sendButton.setImageResource(R.drawable.ic_mic);
@@ -128,15 +128,12 @@ public class ChatBarView extends FrameLayout {
                 if (messageEditText.getText().length() == 0) {
                     Toast.makeText(context, micClickWarningMessage, Toast.LENGTH_SHORT).show();
                 }
-
                 if (isAutoClearEnabled) {
                     messageEditText.setText("");
                 }
-
                 if (isSoftInputHidden) {
                     hideSoftInput();
                 }
-
                 listener.onClick(view);
 
             }
@@ -153,8 +150,8 @@ public class ChatBarView extends FrameLayout {
 
     public void hideSoftInput() {
         View view = ((Activity) context).getCurrentFocus();
-        if (view == null) view = new View(((Activity) context));
-        InputMethodManager imm = (InputMethodManager) ((Activity) context).getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (view == null) view = new View((context));
+        InputMethodManager imm = (InputMethodManager) (context).getSystemService(Activity.INPUT_METHOD_SERVICE);
         if (imm == null) return;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
