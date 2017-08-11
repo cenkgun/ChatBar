@@ -24,9 +24,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO what you want..
-                Toast.makeText(MainActivity.this, chatBarView.getMessageText(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        chatBarView.setOnMicListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                //TODO what you want..
+                return true;
+            }
+        });
+
+        chatBarView.setMicErrorMessage("BABA AKÜ YOK");
 
         text = chatBarView.getMessageText();
     }

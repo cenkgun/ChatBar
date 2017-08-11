@@ -48,8 +48,8 @@
             android:layout_height="50dp"
             android:layout_gravity="bottom"
             android:background="@mipmap/blue_circle"
-            android:backgroundTint="@color/colorPrimary"
-            android:src="@mipmap/input_send"/>
+            android:foreground="?attr/selectableItemBackground"
+            android:backgroundTint="@color/colorPrimary"/>
 
     </LinearLayout>
 </FrameLayout>

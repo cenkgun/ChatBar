@@ -6,5 +6,6 @@
         <attr name="cb_sendButtonBackgroundColor" format="color" />
         <attr name="cb_isTextCleanerEnabled" format="boolean" />
         <attr name="cb_isSoftInputHidden" format="boolean" />
+        <attr name="cb_micClickWarningMessage" format="string" />
     </declare-styleable>
 </resources>
