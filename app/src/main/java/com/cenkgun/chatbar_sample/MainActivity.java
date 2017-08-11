@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO what you want..
+                Toast.makeText(MainActivity.this, chatBarView.getMessageText(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 //TODO what you want..
+                Toast.makeText(MainActivity.this, "Recording...", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });

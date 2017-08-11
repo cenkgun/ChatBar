@@ -2,7 +2,7 @@
 
 A sweet message box designed for Android developers.
 
-![ChatBar for Android](https://i.hizliresim.com/1gGdGj.png)
+![ChatBar for Android](https://i.hizliresim.com/5Q6y8L.gif)
 
 ## Getting Started
 

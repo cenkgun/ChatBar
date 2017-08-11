@@ -128,13 +128,17 @@ public class ChatBarView extends FrameLayout {
                 if (messageEditText.getText().length() == 0) {
                     Toast.makeText(context, micClickWarningMessage, Toast.LENGTH_SHORT).show();
                 }
-                if (isAutoClearEnabled) {
-                    messageEditText.setText("");
-                }
+
+                listener.onClick(view);
+
                 if (isSoftInputHidden) {
                     hideSoftInput();
                 }
-                listener.onClick(view);
+
+                if (isAutoClearEnabled) {
+                    messageEditText.setText("");
+                }
+
 
             }
         });
