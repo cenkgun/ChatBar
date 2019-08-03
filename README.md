@@ -71,19 +71,21 @@ text = chatBarView.getMessageText();
 
 ### Dependency
 Add it in your root build.gradle at the end of repositories:
-
+```
     allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-}
-	
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+     }
+```
+     
 Add the dependency
-
+```
     dependencies {
-    	    compile 'com.github.CenkGun:ChatBar:1.0.5'
-    	}
+        compile 'com.github.CenkGun:ChatBar:1.0.5'
+    }
+```
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
